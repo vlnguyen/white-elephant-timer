@@ -11,6 +11,8 @@ function App() {
     new Recipients([], [])
   );
 
+  const countdownRef = React.useRef<Countdown>(null);
+
   React.useEffect(() => {
     fetch("/recipients")
       .then((resp) => resp.json())
@@ -57,6 +59,7 @@ function App() {
       .then((resp) => resp.json())
       .then((data) => {
         setRecipients(new Recipients(data.waiting, data.received));
+        countdownRef?.current?.api?.start();
       });
   };
 
@@ -77,6 +80,7 @@ function App() {
           onShuffle={handleShuffle}
         />
         <Countdown
+          ref={countdownRef}
           date={moment().add(60, "seconds").toDate()}
           autoStart={false}
           renderer={handleCountdownRender}
