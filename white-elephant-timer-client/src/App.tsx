@@ -3,8 +3,8 @@ import Countdown, { CountdownRenderProps } from "react-countdown";
 import moment from "moment";
 import classNames from "classnames";
 import { Recipients } from "./types/Recipients";
-import "./App.css";
 import { RecipientQueue } from "./components/RecipientQueue";
+import "./App.css";
 
 function App() {
   const [recipients, setRecipients] = useState<Recipients>(
@@ -19,7 +19,7 @@ function App() {
       );
   }, []);
 
-  function handleCountdownRender(props: CountdownRenderProps) {
+  const handleCountdownRender = (props: CountdownRenderProps) => {
     const { minutes, seconds } = props.formatted;
     const { pause, start, stop, isPaused, isStopped, isStarted, isCompleted } =
       props.api;
@@ -50,12 +50,20 @@ function App() {
         </div>
       </div>
     );
-  }
+  };
+
+  const handleNext = () => {
+    fetch("/next", { method: "POST" })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setRecipients(new Recipients(data.waiting, data.received));
+      });
+  };
 
   return (
     <div className="App">
       <div className="App-content">
-        <RecipientQueue recipients={recipients} />
+        <RecipientQueue recipients={recipients} onNext={handleNext} />
         <Countdown
           date={moment().add(60, "seconds").toDate()}
           autoStart={false}
