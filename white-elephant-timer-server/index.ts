@@ -27,7 +27,7 @@ app.get('/recipients', (req, res) => {
   res.send(getReceipients());
 })
 
-app.post('/randomize', (req, res) => {
+app.post('/shuffle', (req, res) => {
   const recipients = getReceipients();
   const newWaiting = lodash.shuffle(recipients.waiting);
   setRecipients(newWaiting, recipients.received);

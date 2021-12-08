@@ -3,11 +3,13 @@ import { Recipients } from "../types/Recipients";
 interface IRecipientQueue {
   recipients: Recipients;
   onNext?: () => void;
+  onShuffle?: () => void;
 }
 
 export const RecipientQueue: React.FC<IRecipientQueue> = ({
   recipients,
   onNext,
+  onShuffle,
 }) => {
   if (recipients.waiting.length === 0) {
     return null;
@@ -28,6 +30,11 @@ export const RecipientQueue: React.FC<IRecipientQueue> = ({
         <div>
           <button className="App-button-next" onClick={onNext}>
             Next
+          </button>
+        </div>
+        <div>
+          <button className="App-button-next" onClick={onShuffle}>
+            Shuffle
           </button>
         </div>
       </div>

@@ -60,10 +60,22 @@ function App() {
       });
   };
 
+  const handleShuffle = () => {
+    fetch("/shuffle", { method: "POST" })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setRecipients(new Recipients(data.waiting, data.received));
+      });
+  };
+
   return (
     <div className="App">
       <div className="App-content">
-        <RecipientQueue recipients={recipients} onNext={handleNext} />
+        <RecipientQueue
+          recipients={recipients}
+          onNext={handleNext}
+          onShuffle={handleShuffle}
+        />
         <Countdown
           date={moment().add(60, "seconds").toDate()}
           autoStart={false}
