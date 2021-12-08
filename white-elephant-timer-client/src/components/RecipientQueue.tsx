@@ -27,16 +27,12 @@ export const RecipientQueue: React.FC<IRecipientQueue> = ({
         </div>
       )}
       <div className="App-button-container">
-        <div>
-          <button className="App-button-next" onClick={onNext}>
-            Next
-          </button>
-        </div>
-        <div>
-          <button className="App-button-next" onClick={onShuffle}>
-            Shuffle
-          </button>
-        </div>
+        <button className="App-button-next" onClick={onNext}>
+          Next
+        </button>
+        <button className="App-button-next" onClick={onShuffle}>
+          Shuffle
+        </button>
       </div>
     </div>
   );

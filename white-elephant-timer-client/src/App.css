@@ -18,6 +18,25 @@
   color: white;
 }
 
+.App-timer-container {
+  padding: 32px;
+}
+
+.App-timer-warning {
+  background-color: #ffc107;
+  color: black;
+}
+
+.App-timer-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.App-timer-zero {
+  background-color: inherit;
+  color: inherit;
+}
+
 .App-recipient-queue {
   margin: 32px;
   font-size: 128px;
@@ -26,6 +45,7 @@
 .App-button-container {
   display: flex;
   justify-content: space-evenly;
+  padding-top: 32px;
 }
 
 button {

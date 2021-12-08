@@ -5,6 +5,7 @@ import classNames from "classnames";
 import { Recipients } from "./types/Recipients";
 import { RecipientQueue } from "./components/RecipientQueue";
 import "./App.css";
+import { TIME_TOTAL, TIME_WARNING, TIME_DANGER } from "./App.constants";
 
 function App() {
   const [recipients, setRecipients] = useState<Recipients>(
@@ -28,15 +29,24 @@ function App() {
 
     const isActive =
       isStarted() && !isCompleted() && (!isPaused() || !isStopped());
+    const timeRemainingSeconds = props.total / 1000;
 
     const playPauseStyle = classNames({
       "App-button-play": !isActive,
       "App-button-pause": isActive,
     });
 
+    const timerStyle = classNames("App-timer-container", {
+      "App-timer-warning": timeRemainingSeconds <= TIME_WARNING,
+      "App-timer-danger": timeRemainingSeconds <= TIME_DANGER,
+      "App-timer-zero": timeRemainingSeconds === 0,
+    });
+
     return (
       <div>
-        {minutes}:{seconds}
+        <div className={timerStyle}>
+          {minutes}:{seconds}
+        </div>
         <div>
           <div className="App-button-container">
             <button
@@ -81,7 +91,7 @@ function App() {
         />
         <Countdown
           ref={countdownRef}
-          date={moment().add(60, "seconds").toDate()}
+          date={moment().add(TIME_TOTAL, "seconds").toDate()}
           autoStart={false}
           renderer={handleCountdownRender}
         />
