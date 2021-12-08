@@ -17,3 +17,31 @@
   font-size: calc(256px + 2vmin);
   color: white;
 }
+
+.App-button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 64px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.App-button-play {
+  background-color: #4caf50;
+}
+.App-button-pause {
+  background-color: #008cba;
+}
+.App-button-stop {
+  background-color: #f44336;
+}
