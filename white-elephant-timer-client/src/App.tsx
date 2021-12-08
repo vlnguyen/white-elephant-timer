@@ -4,6 +4,7 @@ import moment from "moment";
 import classNames from "classnames";
 import { Recipients } from "./types/Recipients";
 import "./App.css";
+import { RecipientQueue } from "./components/RecipientQueue";
 
 function App() {
   const [recipients, setRecipients] = useState<Recipients>(
@@ -54,16 +55,7 @@ function App() {
   return (
     <div className="App">
       <div className="App-content">
-        <div className="App-recipient-queue">
-          <label>Picking:</label>
-          <div>{recipients.waiting[0]}</div>
-          {recipients.waiting.length > 1 && (
-            <div>
-              <label>On deck:</label>
-              <div>{recipients.waiting[1]}</div>
-            </div>
-          )}
-        </div>
+        <RecipientQueue recipients={recipients} />
         <Countdown
           date={moment().add(60, "seconds").toDate()}
           autoStart={false}
