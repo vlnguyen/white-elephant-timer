@@ -33,3 +33,11 @@ app.post('/randomize', (req, res) => {
   setRecipients(newWaiting, recipients.received);
   res.send(getReceipients());
 })
+
+app.post('/next', (req, res) => {
+  const recipients = getReceipients();
+  const latestReceived = recipients.waiting.shift();
+  recipients.received.push(latestReceived);
+  setRecipients(recipients.waiting, recipients.received);
+  res.send(getReceipients());
+})
