@@ -40,6 +40,7 @@ function App() {
   return (
     <div className="App">
       <div className="App-content">
+        <div className="App-recipient-queue">Hello, World!</div>
         <Countdown
           date={moment().add(60, "seconds").toDate()}
           autoStart={false}

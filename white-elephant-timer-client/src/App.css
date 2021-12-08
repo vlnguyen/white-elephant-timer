@@ -11,11 +11,16 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: calc(256px + 2vmin);
+  justify-content: space-evenly;
+  font-size: calc(384px + 2vmin);
   color: white;
+}
+
+.App-recipient-queue {
+  margin: 32px;
+  font-size: calc(128px + 2vmin);
 }
 
 .App-button-container {
