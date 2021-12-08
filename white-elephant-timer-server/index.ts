@@ -1,8 +1,35 @@
 import express from 'express';
-// rest of the code remains same
+import fs from 'fs';
+import lodash from 'lodash';
+
+// constants
+const FILEPATH = "./res/recipients.json";
+
+// initialize server
 const app = express();
 const PORT = 8000;
 app.get('/', (req, res) => res.send('White Elephant API'));
 app.listen(PORT, () => {
   console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
 });
+
+// helper functions
+function getReceipients() {
+  return JSON.parse(fs.readFileSync(FILEPATH).toString());
+}
+
+function setRecipients(waiting: string[], received: string[]) {
+  fs.writeFileSync(FILEPATH, JSON.stringify({ waiting, received }));
+}
+
+// endpoints
+app.get('/recipients', (req, res) => {
+  res.send(getReceipients());
+})
+
+app.post('/randomize', (req, res) => {
+  const recipients = getReceipients();
+  const newWaiting = lodash.shuffle(recipients.waiting);
+  setRecipients(newWaiting, recipients.received);
+  res.send(getReceipients());
+})
