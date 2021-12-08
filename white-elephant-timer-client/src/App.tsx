@@ -84,17 +84,22 @@ function App() {
   return (
     <div className="App">
       <div className="App-content">
-        <RecipientQueue
-          recipients={recipients}
-          onNext={handleNext}
-          onShuffle={handleShuffle}
-        />
-        <Countdown
-          ref={countdownRef}
-          date={moment().add(TIME_TOTAL, "seconds").toDate()}
-          autoStart={false}
-          renderer={handleCountdownRender}
-        />
+        {recipients.waiting.length > 0 && (
+          <>
+            <RecipientQueue
+              recipients={recipients}
+              onNext={handleNext}
+              onShuffle={handleShuffle}
+            />
+            <Countdown
+              ref={countdownRef}
+              date={moment().add(TIME_TOTAL, "seconds").toDate()}
+              autoStart={false}
+              renderer={handleCountdownRender}
+            />
+          </>
+        )}
+        {recipients.waiting.length === 0 && <div>Merry Christmas!</div>}
       </div>
     </div>
   );
