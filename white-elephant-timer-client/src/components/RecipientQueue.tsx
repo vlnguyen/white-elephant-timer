@@ -26,6 +26,10 @@ export const RecipientQueue: React.FC<IRecipientQueue> = ({
           <div>{recipients.waiting[1]}</div>
         </div>
       )}
+      <div>
+        <label>Remaining:</label>
+        <div>{recipients.waiting.length}</div>
+      </div>
       <div className="App-button-container">
         <button className="App-button-next" onClick={onNext}>
           Next
