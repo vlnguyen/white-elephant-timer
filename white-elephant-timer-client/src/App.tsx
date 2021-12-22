@@ -4,8 +4,9 @@ import moment from "moment";
 import classNames from "classnames";
 import { Recipients } from "./types/Recipients";
 import { RecipientQueue } from "./components/RecipientQueue";
-import "./App.css";
 import { TIME_TOTAL, TIME_WARNING, TIME_DANGER } from "./App.constants";
+import daBoi from "./res/charliebrown.png";
+import "./App.css";
 
 function App() {
   const [recipients, setRecipients] = useState<Recipients>(
@@ -91,12 +92,15 @@ function App() {
               onNext={handleNext}
               onShuffle={handleShuffle}
             />
-            <Countdown
-              ref={countdownRef}
-              date={moment().add(TIME_TOTAL, "seconds").toDate()}
-              autoStart={false}
-              renderer={handleCountdownRender}
-            />
+            <div>
+              <img src={daBoi} />
+              <Countdown
+                ref={countdownRef}
+                date={moment().add(TIME_TOTAL, "seconds").toDate()}
+                autoStart={false}
+                renderer={handleCountdownRender}
+              />
+            </div>
           </>
         )}
         {recipients.waiting.length === 0 && <div>Merry Christmas!</div>}
